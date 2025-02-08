@@ -4,6 +4,7 @@ namespace FacultySystem.Models
 {
     public class Staff
     {
+        public Staff() { }
         public Staff(string Email, string Name, bool Gender, string PhoneNumber,
            string NationalId, string Password)
         {

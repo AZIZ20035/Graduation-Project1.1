@@ -77,9 +77,35 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FacultySystem.Controllers.StudentController",
+    "ContainingType": "FacultySystem.Controllers.User",
+    "Method": "exist",
+    "RelativePath": "User/Exists",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "FacultySystem.Controllers.User",
     "Method": "Login",
-    "RelativePath": "Student/login",
+    "RelativePath": "User/Login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -93,9 +119,25 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FacultySystem.Controllers.StudentController",
-    "Method": "Register",
-    "RelativePath": "Student/register",
+    "ContainingType": "FacultySystem.Controllers.User",
+    "Method": "RegisterDoctor",
+    "RelativePath": "User/RegisterDoctor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "FacultySystem.DTOs.RegisterDoctorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FacultySystem.Controllers.User",
+    "Method": "RegisterStudent",
+    "RelativePath": "User/RegisterStudent",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

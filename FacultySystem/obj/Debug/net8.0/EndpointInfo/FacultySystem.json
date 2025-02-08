@@ -112,10 +112,48 @@
         }
       }
     },
-    "/Student/register": {
+    "/User/Exists": {
       "post": {
         "tags": [
-          "Student"
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/RegisterStudent": {
+      "post": {
+        "tags": [
+          "User"
         ],
         "requestBody": {
           "content": {
@@ -143,10 +181,41 @@
         }
       }
     },
-    "/Student/login": {
+    "/User/RegisterDoctor": {
       "post": {
         "tags": [
-          "Student"
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDoctorDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDoctorDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDoctorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/User/Login": {
+      "post": {
+        "tags": [
+          "User"
         ],
         "requestBody": {
           "content": {
@@ -235,6 +304,42 @@
         },
         "additionalProperties": false
       },
+      "RegisterDoctorDto": {
+        "required": [
+          "email",
+          "fullName",
+          "nationalId",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "minLength": 8,
+            "type": "string"
+          },
+          "gender": {
+            "type": "boolean"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "nationalId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "RegisterStudentDto": {
         "required": [
           "email",
@@ -267,6 +372,10 @@
           "nationalId": {
             "minLength": 1,
             "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

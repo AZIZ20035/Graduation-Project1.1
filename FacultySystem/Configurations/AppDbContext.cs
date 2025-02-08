@@ -10,7 +10,7 @@ namespace FacultySystem.Configurations
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Data Source=DESKTOP-HLDK9AS;Initial Catalog=FacultySystem1.1;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FacultySystem;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
