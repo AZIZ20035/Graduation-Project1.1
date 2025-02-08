@@ -67,7 +67,7 @@ const Home = () => {
         }`}
       >
         <div className={styles.textContent}>
-          <h1>Empower Your College Journey</h1>
+          <h1>Streamline Your College Journey</h1>
           <p className={isDarkMode ? styles.lightText : styles.darkText}>
             Manage your studies, stay updated with campus events, and connect
             with your academic community—all in one platform.

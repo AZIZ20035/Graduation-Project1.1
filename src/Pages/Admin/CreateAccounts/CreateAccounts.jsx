@@ -31,9 +31,17 @@ const CreateStudentAccount = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const fullName = `${firstName} ${lastName}`.trim();
-
+    console.log({
+      fullName,
+      email,
+      password,
+      gender,
+      phoneNumber,
+      nationalId,
+      year,
+    });
+    let api_url = "https://localhost:44338/User";
     try {
-      let api_url = "https://localhost:7296/User";
       if (role === "student") {
         api_url = `${api_url}/RegisterStudent`;
       } else {
@@ -59,7 +67,7 @@ const CreateStudentAccount = () => {
       const data = await response.json();
       console.log("Success:", data, api_url);
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error:", error, api_url);
     }
   };
 
