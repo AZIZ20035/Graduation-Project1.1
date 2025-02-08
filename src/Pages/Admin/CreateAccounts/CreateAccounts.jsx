@@ -19,7 +19,7 @@ const CreateStudentAccount = () => {
   const [gender, setGender] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [nationalId, setNationalId] = useState("");
-  const [year, setYear] = useState();
+  const [year, setYear] = useState(0);
   const [role, setRole] = useState("student");
 
   const { isDarkMode } = useDarkMode();
@@ -31,6 +31,7 @@ const CreateStudentAccount = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const fullName = `${firstName} ${lastName}`.trim();
+
     console.log({
       fullName,
       email,
@@ -38,9 +39,20 @@ const CreateStudentAccount = () => {
       gender,
       phoneNumber,
       nationalId,
-      year,
+      year: parseInt(year),
     });
+
     let api_url = "https://localhost:44338/User";
+    const data = {
+      fullName,
+      email,
+      password,
+      gender,
+      phoneNumber,
+      nationalId,
+      year,
+    };
+
     try {
       if (role === "student") {
         api_url = `${api_url}/RegisterStudent`;
@@ -52,22 +64,13 @@ const CreateStudentAccount = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          fullName,
-          email,
-          password,
-          gender,
-          phoneNumber,
-          nationalId,
-          year: role === "student",
-          role,
-        }),
+        body: JSON.stringify(data),
       });
 
-      const data = await response.json();
-      console.log("Success:", data, api_url);
+      const result = await response.json();
+      console.log("Response:", result, api_url);
     } catch (error) {
-      console.error("Error:", error, api_url);
+      console.error("Error:", error);
     }
   };
 
@@ -175,25 +178,24 @@ const CreateStudentAccount = () => {
               className={styles.inputFullWidth}
             />
           </div>
-
           <div className={styles.inputWithIcon}>
             <label>Gender</label>
             <div>
               <label>
                 <input
                   type="radio"
-                  value={true}
+                  value="true"
                   checked={gender === true}
-                  onChange={(e) => setGender(e.target.value)}
+                  onChange={() => setGender(true)}
                 />
                 Male
               </label>
               <label>
                 <input
                   type="radio"
-                  value={false}
+                  value="false"
                   checked={gender === false}
-                  onChange={(e) => setGender(e.target.value)}
+                  onChange={() => setGender(false)}
                 />
                 Female
               </label>
